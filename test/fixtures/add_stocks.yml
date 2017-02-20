@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prod_id: MyString
+  prod_name: MyString
+  prod_cat: MyString
+  quan: 
+  cp: 1.5
+  sp: 1.5
+  expiry: 
+
+two:
+  prod_id: MyString
+  prod_name: MyString
+  prod_cat: MyString
+  quan: 
+  cp: 1.5
+  sp: 1.5
+  expiry: 

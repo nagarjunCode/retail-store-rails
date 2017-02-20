@@ -1,0 +1,21 @@
+<div class="jumbotron welcome">
+<h1>!!!&nbsp;&nbsp;&nbsp;Welcome&nbsp;&nbsp;&nbsp;!!!</h1>
+<div class="container">
+	<% if customer_signed_in? %>
+
+	 Signed in as<b> <%= current_customer.email %> .</b> <br><br>
+	 Not you? &nbsp;	
+	 <%= link_to "Sign out",destroy_customer_session_path, :method => :delete , :class => "btn btn-danger"%> 
+	 &nbsp;&nbsp;&nbsp;
+	 <%= link_to 'Buy Products', products_url, :class => "btn btn-primary" %> 
+	 <%cookies[:id] = current_customer.id %>
+	 <% else %>
+     <div class="sign_in_menu">
+	 <%=link_to "Sign up", new_customer_registration_path, :class => "btn btn-info"%> &nbsp;&nbsp;or&nbsp;&nbsp;
+	 <%= link_to "Sign in", new_customer_session_path ,:class => "btn btn-primary"%>
+	 </div>
+	 <%end%>
+ </div>
+
+<br>
+</div>

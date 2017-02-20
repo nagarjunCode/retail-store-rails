@@ -1,0 +1,29 @@
+.remove{
+	cursor: pointer;
+	color: red;
+}
+.cart{
+	color: orange;
+	 font-size: 25px;
+	margin-left: 45%;
+}
+.cartTable{
+	border: 1px solid orange;
+	overflow:scroll;
+    height:250px;
+}
+.cost{
+	font-size: 20px;
+	margin-left: 40%; 
+}
+.footer{
+	margin-left: 35%;
+	margin-top: 10px;
+}
+.sign_in_menu{
+	
+	font-size: 20px;
+}
+.welcome{
+	text-align: center;
+}

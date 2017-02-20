@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trans_id: MyString
+  cust_id: MyString
+  de_id: MyString
+  prod_id: MyString
+  quan: 1
+
+two:
+  trans_id: MyString
+  cust_id: MyString
+  de_id: MyString
+  prod_id: MyString
+  quan: 1

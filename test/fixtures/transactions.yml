@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trans_id: MyString
+  total_cost: 1.5
+  profit: 1.5
+
+two:
+  trans_id: MyString
+  total_cost: 1.5
+  profit: 1.5

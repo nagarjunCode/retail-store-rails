@@ -1,0 +1,39 @@
+<script>var prods = <%= Product.all.map(&:product_name).to_json.html_safe %> </script>
+<div class="container"><h1>Retail Shop</h1>
+	<strong>Customer : </strong>
+	<input type="text" id="customer_name">
+	<strong>Date : </strong>
+	<input type="text" id="date" >
+		<strong>Address : </strong>
+	<textarea rows="4" cols="50" id="address"></textarea><br><br>
+	
+
+	<div class="ui-widget">
+	  <label for="search_product">Search Product : </label>
+	  <input id="search_product"/>
+	</div>
+	<span class="cart">MY CART</span>
+	<div  class="cartTable">
+		<table class='table table-hover' id="myTable" >
+			<thead>
+			
+				<tr><th>Product Name</th><th>Category</th><th>Price</th><th>Quantity</th><th>Amount</th><th>&nbsp;</th></tr>
+			</thead>
+
+  			<tbody id="tableArea">
+			
+			</tbody>
+
+		</table>
+		
+	</div>
+	<div class="cost">
+	<label>Total Cost : </label>
+	<span id="total_cost"></span>
+	</div>
+	<div class="footer">
+		<button class="btn btn-warning check_out">Check Out</button>
+		&nbsp;&nbsp;&nbsp;
+		<%= link_to "Sign out",destroy_customer_session_path, :method => :delete , :class => "btn btn-danger"%> 
+	</div>
+</div>
