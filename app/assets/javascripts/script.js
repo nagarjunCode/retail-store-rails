@@ -62,7 +62,7 @@ $(document).ready(function() {
         var price_index = parseInt($(this).attr("data-product-id")) - 1;
         var price = parseFloat(datas[price_index]["price"]);
         amount = parseFloat(tr_val.context.value * price);
-        
+
         if (!cart.length) sum = 0;
         cart[cart.length - 1]["quantity"] = tr_val.context.value;
         cart[cart.length - 1]["amount"] = amount;
@@ -114,10 +114,14 @@ $(document).ready(function() {
     });
 
     $(".check_out").on("click", function() {
+        var flag = 1;
         if (cart.length == 0)
             alert("cart is empty");
+        else if ($('#customer_name').val().length == 0 || $("#date").datepicker().val().length == 0 || $('#address').val().length == 0)
+            alert("Fill All Details");
+
         else {
-            var flag = 1;
+
             for (var i = 0; i < cart.length; i++) {
                 if (cart[i]["quantity"] == 0) {
                     alert("Enter quantity for " + cart[i]["product_name"])
@@ -125,61 +129,62 @@ $(document).ready(function() {
 
                 }
             }
-        }
-        if (flag) {
-            var current_customer_id = document.cookie;
-            current_customer_id = parseInt(current_customer_id.substr(3, current_customer_id.length));
-            $.ajax({
-                url: '/orders',
-                method: 'POST',
-                data: {
-                    customer_id: current_customer_id,
-                    date: $("#date").datepicker().val(),
-                    cost: parseFloat(sum),
-                    cart: cart
-                },
-                success: function() {
-                    $.ajax({
-                        url: 'customers/update',
-                        method: 'PATCH',
-                        data: {
-                            customer_id: current_customer_id,
-                            customer_name: $('#customer_name').val(),
-                            address: $('#address').val(),
-                        },
-                        success: function() {
 
-                            $.ajax({
-                                url: '/ordered_items',
-                                method: 'POST',
-                                data: {
-                                    cart: cart
-                                },
-                                success: function() {
-                                    console.log("Order Placed Successfully");
-                                },
-                                failure: function() {
-                                    console.log("Error in placing order");
-                                }
+            if (flag) {
+                var current_customer_id = document.cookie;
+                current_customer_id = parseInt(current_customer_id.substr(3, current_customer_id.length));
+                $.ajax({
+                    url: '/orders',
+                    method: 'POST',
+                    data: {
+                        customer_id: current_customer_id,
+                        date: $("#date").datepicker().val(),
+                        cost: parseFloat(sum),
+                        cart: cart
+                    },
+                    success: function() {
+                        $.ajax({
+                            url: 'customers/update',
+                            method: 'PATCH',
+                            data: {
+                                customer_id: current_customer_id,
+                                customer_name: $('#customer_name').val(),
+                                address: $('#address').val(),
+                            },
+                            success: function() {
 
-                            });
-                        },
-                        failure: function() {
-                            console.log("Failed");
-                        }
+                                $.ajax({
+                                    url: '/ordered_items',
+                                    method: 'POST',
+                                    data: {
+                                        cart: cart
+                                    },
+                                    success: function() {
+                                        console.log("Order Placed Successfully");
+                                    },
+                                    failure: function() {
+                                        console.log("Error in placing order");
+                                    }
 
-                    });
-                },
-                failure: function() {
-                    console.log("failed");
-                }
-            });
+                                });
+                            },
+                            failure: function() {
+                                console.log("Failed");
+                            }
+
+                        });
+                    },
+                    failure: function() {
+                        console.log("failed");
+                    }
+                });
 
 
 
-            alert("Order Placed Successfully");
-            location.reload();
+                alert("Order Placed Successfully");
+                location.reload();
 
+            }
         }
     });
 
